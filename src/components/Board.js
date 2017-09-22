@@ -11,8 +11,7 @@ class Board extends Component {
       board: [
         '','','','','','','','',''
       ],
-      winner: false,
-      shouldRefresh: false
+      winner: false
     }
   }
 
@@ -53,15 +52,14 @@ class Board extends Component {
     let wins = [[0,1,2],[3,4,5],[6,7,8],[0,3,6],[1,4,7],[2,5,8],[0,4,8],[2,4,6]]
     let state = this.state.board
 
-    return wins.find((combo) => {
+    wins.forEach((combo) => {
       if(state[combo[0]] === state[combo[1]]
         && state[combo[0]] === state[combo[2]]
         && state[combo[0]]) {
         alert('Winner is ' + state[combo[0]])
-        this.setState({winner: true})
+        this.setState({ winner: true })
       }
     })
-
   }
 
   render() {

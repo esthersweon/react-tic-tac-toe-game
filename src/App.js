@@ -8,22 +8,27 @@ class App extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      test: false
+      refreshBoard: false
     }
     this.resetGame = this.resetGame.bind(this);
   }
 
   resetGame(e) {
     e.preventDefault();
-    this.setState({ test: true })
+    this.setState({ refreshBoard: true })
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (this.state.refreshBoard) {
+      this.setState({ refreshBoard: true });
+    }
   }
 
   render() {
     return (
       <div className="page-wrapper">
-        <div>{ this.state.test }</div>
         <Navbar resetGame={ this.resetGame }/>
-        <Board shouldRefresh={ this.state.test } /> 
+        <Board shouldRefresh={ this.state.refreshBoard } /> 
       </div>
     );
   }
